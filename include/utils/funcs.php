@@ -1,5 +1,7 @@
 <?php 
 
+require_once dirname(dirname(dirname(__FILE__))) .'/include/data/database-login.php';
+
 session_start();
 
 function login($dados){
@@ -9,7 +11,8 @@ function login($dados){
 	if (!isset($dados['senha'])) {
 		return false;
 	}
-	$retorno = ['nome' => 'Lucas', 'id' => 1];
+	
+	$retorno = logar($dados);
 
 	if( $retorno ){
 		$_SESSION['logado'] = true;
@@ -17,6 +20,7 @@ function login($dados){
 		$_SESSION['id'] = $retorno['id'];
 		return true;
 	}else{
+		$_SESSION['error'] = true;
 		return false;
 	} 
 }

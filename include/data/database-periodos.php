@@ -5,7 +5,7 @@ require_once 'conexao.php';
 function insere_periodo($descricao){
 	$con = conecta();
 
-	$sql = "INSERT INTO periodos (descricao) VALUES ('{$descricao}')";
+	$sql = "INSERT INTO tb_periodos (descricao) VALUES ('{$descricao}')";
 
 	pg_query($con, $sql);
 	
@@ -16,7 +16,7 @@ function lista_periodos(){
 
 	$con = conecta();
 
-	$sql = "SELECT * FROM periodos";
+	$sql = "SELECT * FROM tb_periodos";
 
     $result = pg_query($con, $sql);
     $found = pg_fetch_all($result);
@@ -30,20 +30,20 @@ function lista_periodos(){
 function lista_periodo_por_id($id){
 	$con = conecta();
 
-	$sql = "SELECT * FROM periodos WHERE id = {$id}";
+	$sql = "SELECT * FROM tb_periodos WHERE id = {$id}";
 
     $result = pg_query($con, $sql);
-    $found = pg_fetch_all($result);
+    $found = pg_fetch_assoc($result);
 
     desconecta($con);
 
     return $found;
 }
 
-function edita_periodo($periodos){
+function edita_periodo($periodo){
 	$con = conecta();
 
-	$sql = "UPDATE periodos SET descricao = '{$periodos['descricao']}' WHERE id = {$periodos['id']}";
+	$sql = "UPDATE tb_periodos SET descricao = '{$periodo['descricao']}' WHERE id = {$periodo['id']}";
 
 	pg_query($con, $sql);
 	
@@ -53,21 +53,10 @@ function edita_periodo($periodos){
 function exclui_periodo($id){
 	$con = conecta();
 
-	$sql = "DELETE FROM periodos WHERE id = {$id}";
+	$sql = "DELETE FROM tb_periodos WHERE id = {$id}";
 
 	pg_query($con, $sql);
 
 	desconecta($con);
 
 }
-
-// echo "<pre>";
-// // insere_periodo('noturno');
-// // exclui_periodo(3);
-
-// $periodo = ['id' => 1, 'descricao' => 'matutino'];
-// edita_periodo($periodo);
-
-// $periodos = lista_periodos();
-
-// var_dump($periodos);

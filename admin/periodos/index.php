@@ -19,6 +19,8 @@
         </thead>
         <tbody>
 
+        <?php if(lista_periodos()) : ?>
+
         <?php foreach (lista_periodos() as $periodo) : ?>
 
             <tr>
@@ -34,6 +36,8 @@
             </tr>
 
         <?php endforeach; ?>
+
+        <?php endif; ?>
 
         </tbody>
     </table>
