@@ -2,7 +2,7 @@
 
 $host = "localhost";
 $port = "5432";
-$dbname = "aula04";
+$dbname = "dexterescola";
 $user = "lucas";
 $password = "123";
 
